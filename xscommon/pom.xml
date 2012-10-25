@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>xs</artifactId>
+    <groupId>com.flx.xs</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../xs/pom.xml</relativePath>
+  </parent>
+ 
+  <groupId>com.flx.xs</groupId>
+  <artifactId>xscommon</artifactId>
+  <name>xscommon</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${mvn.spring.version}</version>
+      </dependency>
+      <dependency> 
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+      </dependency>  
+  </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mvn.spring.version>3.1.0.RELEASE</mvn.spring.version>
+    <mvn.project.build.sourceEncoding>UTF-8</mvn.project.build.sourceEncoding>
+    <!-- log4j -->
+    <mvn.log4j.rootCategory>WARN</mvn.log4j.rootCategory>
+    <mvn.log4j.category.org.springframework.beans.factory>WARN</mvn.log4j.category.org.springframework.beans.factory>
+  </properties>
+  
+</project>
