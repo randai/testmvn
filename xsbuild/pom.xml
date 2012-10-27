@@ -9,7 +9,7 @@
 
 	<name>xsbuild</name>
 	<!-- This changes each time a release is made -->
-	<version>3.0.2</version>
+	<version>3.0.3</version>
 
 	<modules>
 		<module>../xsmm</module>

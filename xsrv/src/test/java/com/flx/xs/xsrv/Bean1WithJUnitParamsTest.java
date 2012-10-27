@@ -29,7 +29,7 @@ public class Bean1WithJUnitParamsTest {
     @Parameters(method = "helloValues")
     public void testHello(String arg1, String arg2, String valid)
     {
-        System.out.println(getClass().getName() + ".testHello");
+        System.out.println(getClass().getName() + ".testHello "+arg1+" "+arg2+" answer should equal "+valid);
         //given
         bean1.setVar1(arg1);
         String result;
@@ -45,7 +45,8 @@ public class Bean1WithJUnitParamsTest {
     private Object[] helloValues() {
         return $(
                     $("Hello", "word1", "Hello, word1"),
-                    $("Hello", "word2", "Hello, word2")
+                    $("Hello", "word2", "Hello, word2"),
+                    $("Hello", "word3", "Hello, word3")
                 );
     }
 

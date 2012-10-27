@@ -4,7 +4,7 @@ then
         exit 1
 fi
 PWD=`pwd`
-cd $XS_HOME/$1
+cd $XS_HOME/xs-current/$1
 #extract the CLASSPATH
 XS_CLASSPATH=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
 XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$CLASSPATH
