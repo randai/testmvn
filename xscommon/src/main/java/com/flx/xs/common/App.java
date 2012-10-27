@@ -12,6 +12,6 @@ public class App
     }
     
     public static String CommonMethod() {
-    	return "Return from CommonMethod";
+    	return "Return from CommonMethod - version 2";
     }
 }
