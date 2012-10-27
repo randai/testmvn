@@ -5,7 +5,7 @@
     <parent>
         <artifactId>xs</artifactId>
         <groupId>com.flx.xs</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <relativePath>../xs/pom.xml</relativePath>
    </parent>
 	<groupId>com.flx.xs</groupId>
@@ -15,7 +15,7 @@
 		<dependency>
 			<groupId>com.flx.xs</groupId>
 			<artifactId>xscommon</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>
