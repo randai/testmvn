@@ -8,35 +8,35 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsmm/target/dist</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsrv/target/dist</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsds/target/dist</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xsrv/BARX</outputDirectory>
+			<outputDirectory>xs-${project.version}/xsrv/BARX</outputDirectory>
 			<directory>src/main/resources/xsrv/BARX</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xsrv/GS</outputDirectory>
+			<outputDirectory>xs-${project.version}/xsrv/GS</outputDirectory>
 			<directory>src/main/resources/xsrv/GS</directory>
 			<includes>
 				<include>**/*</include>

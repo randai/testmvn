@@ -9,21 +9,21 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsmm/target/dist</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsrv/target/dist</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>/bin</outputDirectory>
+			<outputDirectory>xs-${project.version}/bin</outputDirectory>
 			<fileMode>755</fileMode>
 			<directory>src/main/exe</directory>
 			<includes>
@@ -31,14 +31,14 @@
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xsrv/BARX</outputDirectory>
+			<outputDirectory>xs-${project.version}/xsrv/BARX</outputDirectory>
 			<directory>src/main/resources/xsrv/BARX</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xsrv/CNX</outputDirectory>
+			<outputDirectory>xs-${project.version}/xsrv/CNX</outputDirectory>
 			<directory>src/main/resources/xsrv/CNX</directory>
 			<includes>
 				<include>**/*</include>
