@@ -14,7 +14,13 @@
                 </list>
             </property>
     </bean>
-
+    
+	<bean id="propertyConfigurer"
+		class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
+		<property name="propertyLocationSystemProperty" value="propertyPath" />
+		<property name="ignoreResourceNotFound" value="false" />
+	</bean>
+    
     <bean id="bean1" class="com.flx.xs.xsmm.Bean1"/>
     <bean id="runner" class="com.flx.xs.xsmm.Runner"/>
 
