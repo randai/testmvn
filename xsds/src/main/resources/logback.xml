@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <jmxConfigurator />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+        </encoder>
+    </appender>
+    
+      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+              <layout class="ch.qos.logback.classic.PatternLayout">
+                      <param name="Pattern"
+                              value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+              </layout>
+      </appender>
+
+      <!--Daily rolling file appender -->
+      <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+              <File>${LOG_FOLDER}/mkr.log</File>
+              <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                      <FileNamePattern>${LOG_FOLDER}/mkr.%d{yyyy-MM-dd}.log</FileNamePattern>
+              </rollingPolicy>
+
+              <layout class="ch.qos.logback.classic.PatternLayout">
+                      <param name="Pattern"
+                              value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+              </layout>
+      </appender>
+
+      <appender name="ASYNC" class="com.financialogix.common.logging.AsyncAppender">
+              <param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
+              <param name="IncludeCallerData" value="true" /><!-- Default is false -->
+              <appender-ref ref="${OUTPUT}" />
+      </appender>
+
+    <logger name="test.myapp.repos">
+       <level value="INFO" />
+    </logger>
+ 
+    <logger name="org.springframework">
+        <level value="INFO" />
+    </logger>
+ 
+    <root>
+           <level value="INFO" />
+           <appender-ref ref="ASYNC" />
+       </root>
+</configuration>

@@ -14,7 +14,9 @@
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
     
-    <bean id="bean1" class="com.flx.xs.xsmm.Bean1"/>
+    <bean id="bean1" class="com.flx.xs.xsmm.Bean1">
+        <property name="var1" value="ss"></property>
+        </bean>
     <bean id="runner" class="com.flx.xs.xsmm.Runner"/>
 
 

@@ -19,7 +19,7 @@ public class Runner implements IRunner {
 
     @Override
     public void run() {
-        log.info(bean1.hello("world"));
+        log.info(bean1.hello("worldxx"));
     }
 
     @Autowired
