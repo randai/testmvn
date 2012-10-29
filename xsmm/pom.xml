@@ -64,11 +64,11 @@
 	<properties>
 		<mvn.spring.version>3.1.0.RELEASE</mvn.spring.version>
 		<mvn.project.build.sourceEncoding>UTF-8</mvn.project.build.sourceEncoding>
-		<mvn.var1>Hello</mvn.var1>
+		<mvn.var1>Helloxxx</mvn.var1>
 		<mvn.main.class>com.flx.xs.xsmm.Main</mvn.main.class>
 
 		<!-- log4j -->
-		<mvn.log4j.rootCategory>WARN</mvn.log4j.rootCategory>
+		<mvn.log4j.rootCategory>INFO</mvn.log4j.rootCategory>
 		<mvn.log4j.category.org.springframework.beans.factory>WARN</mvn.log4j.category.org.springframework.beans.factory>
 	</properties>
 

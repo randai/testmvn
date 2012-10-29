@@ -8,6 +8,7 @@ cd $XS_HOME/xs-current/$1
 #extract the CLASSPATH
 XS_CLASSPATH=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
 XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$CLASSPATH
+#allow for insertion of additional or overide jars
 
 #extract the main class
 XS_MAIN=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Main-Class`
@@ -29,6 +30,6 @@ then
         fi
 fi
 
-#run ... allow for insertion of additional or overide jars
+#run ... 
 java -classpath $XS_CLASSPATH $XS_MAIN $2
 cd $PWD
