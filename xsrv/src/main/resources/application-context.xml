@@ -7,21 +7,15 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="com.flx.xs"/>
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-            <property name="locations">
-                <list>
-                    <value>classpath:/META-INF/settings.properties</value>
-                </list>
-            </property>
-    </bean>
-
-    <bean id="bean1" class="com.flx.xs.xsrv.Bean1"/>
+    
+	<bean id="propertyConfigurer"
+		class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
+		<property name="propertyLocationSystemProperty" value="propertyPath" />
+		<property name="ignoreResourceNotFound" value="false" />
+	</bean>
+    
+    <bean id="bean1" class="com.flx.xs.xsrv.Bean1">
+        <property name="var1" value="${ss}"></property>
+        </bean>
     <bean id="runner" class="com.flx.xs.xsrv.Runner"/>
-
-
-
-
-
-
-
 </beans>

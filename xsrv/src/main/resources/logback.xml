@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<jmxConfigurator />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<param name="Pattern"
+				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+		</layout>
+	</appender>
+
+	<!--Daily rolling file appender -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${XS_HOME}/xs-current/xsrv/log/xsrv.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<param name="Pattern"
+				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+		</layout>
+	</appender>
+	<appender name="FILE_AUDIT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${XS_HOME}/xs-current/xsrv/log/xsrv-audit.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv-audit.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<param name="Pattern"
+				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+		</layout>
+	</appender>
+		<appender name="FILE_PERF"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${XS_HOME}/xs-current/xsrv/log/xsrv-perf.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv-perf.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<param name="Pattern"
+				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+		</layout>
+	</appender>
+	
+	<appender name="ASYNC" class="com.flx.xs.common.logger.AsyncAppender">
+		<param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
+		<param name="IncludeCallerData" value="true" /><!-- Default is false -->
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</appender>
+	<appender name="ASYNC_AUDIT" class="com.flx.xs.common.logger.AsyncAppender">
+		<param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
+		<param name="IncludeCallerData" value="true" /><!-- Default is false -->
+		<appender-ref ref="FILE_AUDIT" />
+	</appender>
+		<appender name="ASYNC_PERF" class="com.flx.xs.common.logger.AsyncAppender">
+		<param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
+		<param name="IncludeCallerData" value="true" /><!-- Default is false -->
+		<appender-ref ref="FILE_PERF" />
+	</appender>
+	
+	<logger name="test.myapp.repos">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="audit">
+		<level value="ASYNC_AUDIT" />
+	</logger>
+	
+	<logger name="performance">
+		<level value="ASYNC_PERF" />
+	</logger>
+		
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="ASYNC" />
+	</root>
+	
+</configuration>
