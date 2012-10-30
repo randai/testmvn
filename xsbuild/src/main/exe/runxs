@@ -7,6 +7,7 @@ PWD=`pwd`
 cd $XS_HOME/xs-current/$1
 #extract the CLASSPATH
 XS_CLASSPATH=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
+#set PATCH env variable if PATCH jar required
 XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$CLASSPATH
 #allow for insertion of additional or overide jars
 
@@ -19,17 +20,17 @@ if [ $# = 1 ]
 then
         if [ ! -d log ]
         then
-                mkdir log
+                LOG_DIR=log
         fi
 fi
 if [ $# = 2 ]
 then
         if [ ! -d $2/log ]
         then
-                mkdir $2/log
+                LOG_DIR=$2/log
         fi
 fi
-
-#run ... 
-java -classpath $XS_CLASSPATH $XS_MAIN $2
+mkdir $LOG_DIR
+#run ... set JDP env variable to debug params if needed
+nohup java $JDP -classpath $XS_CLASSPATH $XS_MAIN $2 2>&1 >$LOG_DIR/stdout.out
 cd $PWD
