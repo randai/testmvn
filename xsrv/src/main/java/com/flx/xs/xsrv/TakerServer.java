@@ -1,13 +1,13 @@
 package com.flx.xs.xsrv;
 
-public class Taker {
+public class TakerServer {
 	String var;
 
 	public String getVar() {
 		return var;
 	}
 
-	public void setVar(String var) {
+	public void setTakerAdaptor(TakerApi takerAdaptor) {
 		this.var = var;
 	}
 }

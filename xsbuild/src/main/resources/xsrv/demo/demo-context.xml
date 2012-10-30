@@ -5,14 +5,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:annotation-config/>
-    <context:component-scan base-package="com.flx.xs"/>
-    
-	<bean id="propertyConfigurer"
-		class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
-		<property name="propertyLocationSystemProperty" value="propertyPath" />
-		<property name="ignoreResourceNotFound" value="false" />
-	</bean>
-    
-
+	<bean id="server" class="com.flx.xs.xsrv.TakerServer">
+        <property name="TakerAdaptor" ref="taker"></property>
+    </bean>
+	
+	<bean id="taker" class="com.flx.xs.xsrv.demo.DemoTakerApi" init-method="initialize" destroy-method="dispose">
+    </bean>
+	
 </beans>
