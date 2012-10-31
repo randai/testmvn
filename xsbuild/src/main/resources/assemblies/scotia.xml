@@ -29,15 +29,15 @@
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xs-${project.version}/xsrv/BARX</outputDirectory>
-			<directory>src/main/resources/xsrv/BARX</directory>
+			<outputDirectory>xs-${project.version}/xsrv/barx</outputDirectory>
+			<directory>src/main/resources/xsrv/barx</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xs-${project.version}/xsrv/GS</outputDirectory>
-			<directory>src/main/resources/xsrv/GS</directory>
+			<outputDirectory>xs-${project.version}/xsrv/gs</outputDirectory>
+			<directory>src/main/resources/xsrv/gs</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
