@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:annotation-config/>
-    <context:component-scan base-package="com.flx.xs"/>
-    
-	<bean id="propertyConfigurer"
-		class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
+	<context:annotation-config />
+	<context:component-scan base-package="com.flx.xs" />
+	<context:mbean-export/>
+	
+	<bean id="propertyConfigurer" class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
 		<property name="propertyLocationSystemProperty" value="propertyPath" />
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
-    
+
+	<bean id="server" class="com.flx.xs.xsrv.TakerServer" init-method="initialize" destroy-method="dispose">
+        <property name="TakerAdaptor" ref="taker"></property>
+    </bean>
+
+	<bean id="dataservice" class="com.flx.xs.common.data.RemoteDataService"
+		init-method="initialize" destroy-method="dispose" />
+
+
+	<bean class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="xsrv:name=Main" value-ref="server" />
+				<entry key="xsrv:name=RemoteDataService" value-ref="dataservice" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.jmx.support.MBeanServerFactoryBean" />
+
 
 </beans>

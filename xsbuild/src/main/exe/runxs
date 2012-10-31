@@ -6,31 +6,33 @@ fi
 PWD=`pwd`
 cd $XS_HOME/xs-current/$1
 #extract the CLASSPATH
-XS_CLASSPATH=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
+XS_CLASSPATH=`java -classpath $XS_HOME/xs-current/lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
 #set PATCH env variable if PATCH jar required
-XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$CLASSPATH
+XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$XS_CLASSPATH
 #allow for insertion of additional or overide jars
 
 #extract the main class
-XS_MAIN=`java -classpath ../lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Main-Class`
-
+XS_MAIN=`java -classpath $XS_HOME/xs-current/lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Main-Class`
 #create log folders if they don't currently exist
 #if there is one argument then the log folder is in the current folder
-if [ $# = 1 ]
+if [ $# -eq 1 ]
 then
-        if [ ! -d log ]
-        then
-                LOG_DIR=log
-        fi
+        APP=$1
+        LOG_DIR=$XS_HOME/xs-current/$1/log
 fi
-if [ $# = 2 ]
+if [ $# -eq 2 ]
 then
-        if [ ! -d $2/log ]
-        then
-                LOG_DIR=$2/log
-        fi
+        APP=$2
+        LOG_DIR=$XS_HOME/xs-current/$1/$2/log
+        XS_APP_DIR="-DXS_APP_DIR=$APP"
 fi
-mkdir $LOG_DIR
+if [ ! -d $LOG_DIR ]
+then
+        mkdir $LOG_DIR
+fi
 #run ... set JDP env variable to debug params if needed
-nohup java $JDP -classpath $XS_CLASSPATH $XS_MAIN $2 2>&1 >$LOG_DIR/stdout.out
+COMMAND="java $JDP -DLOG_DIR=$LOG_DIR $XS_APP_DIR -classpath $XS_CLASSPATH $XS_MAIN $2"
+echo $COMMAND >$LOG_DIR/$APP.cmd
+nohup $COMMAND 2>&1 > $LOG_DIR/$APP`date '+%Y_%m_%d:%H:%M:%S'`.nohup&
+echo $! >$LOG_DIR/$APP.pid
 cd $PWD

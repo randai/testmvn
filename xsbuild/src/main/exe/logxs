@@ -1,0 +1,15 @@
+if [ "$XS_HOME" = "" ]
+then
+        echo "XS_HOME must be set"
+        exit 1
+fi
+#if there is one argument then the log folder is in the app folder otherwide in the sub-app folder
+if [ $# -eq 1 ]
+then
+        LOG_DIR=$XS_HOME/xs-current/$1/log
+fi
+if [ $# -eq 2 ]
+then
+        LOG_DIR=$XS_HOME/xs-current/$1/$2/log
+fi
+tail -f $LOG_DIR/$1.log

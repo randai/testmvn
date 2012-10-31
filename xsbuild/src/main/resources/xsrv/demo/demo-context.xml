@@ -5,11 +5,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<bean id="server" class="com.flx.xs.xsrv.TakerServer">
-        <property name="TakerAdaptor" ref="taker"></property>
-    </bean>
-	
 	<bean id="taker" class="com.flx.xs.xsrv.demo.DemoTakerApi" init-method="initialize" destroy-method="dispose">
+    	<property name="dataService" ref="dataservice"></property>
     </bean>
-	
+    	<bean class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="xsrv:name=DemoTaker" value-ref="taker" />
+			</map>
+		</property>
+	</bean>
+	<bean class="org.springframework.jmx.support.ConnectorServerFactoryBean" >
+		<property name="serviceUrl" value="service:jmx:jmxmp://localhost:${demo.jmx.port}/MAKER" />
+	</bean>	
 </beans>

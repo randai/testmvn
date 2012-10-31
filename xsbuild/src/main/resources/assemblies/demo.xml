@@ -31,15 +31,22 @@
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xs-${project.version}/xsrv/BARX</outputDirectory>
-			<directory>src/main/resources/xsrv/BARX</directory>
+			<outputDirectory>xs-${project.version}/xsrv/demo</outputDirectory>
+			<directory>src/main/resources/xsrv/demo</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>xs-${project.version}/xsrv/CNX</outputDirectory>
-			<directory>src/main/resources/xsrv/CNX</directory>
+			<outputDirectory>xs-${project.version}/xsrv/barx</outputDirectory>
+			<directory>src/main/resources/xsrv/barx</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<outputDirectory>xs-${project.version}/xsrv/cnx</outputDirectory>
+			<directory>src/main/resources/xsrv/cnx</directory>
 			<includes>
 				<include>**/*</include>
 			</includes>

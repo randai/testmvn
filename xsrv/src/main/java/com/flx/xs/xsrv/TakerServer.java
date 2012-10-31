@@ -1,13 +1,26 @@
 package com.flx.xs.xsrv;
 
-public class TakerServer {
-	String var;
+import org.apache.commons.logging.Log;
 
-	public String getVar() {
-		return var;
-	}
+import com.flx.xs.common.logger.Logger;
+
+public class TakerServer {
+	@Logger private Log log;
+	TakerApi takerAdaptor;
+	
 
 	public void setTakerAdaptor(TakerApi takerAdaptor) {
-		this.var = var;
+		this.takerAdaptor = takerAdaptor;
 	}
+	
+	public void initialize() {
+		log.info("In initialize");
+		
+	}
+
+	public void dispose() {
+		log.info("In dispose");
+		
+	}
+
 }

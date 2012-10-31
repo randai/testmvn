@@ -18,9 +18,9 @@
 	<!--Daily rolling file appender -->
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsrv/log/xsrv.log</File>
+		<File>${LOG_DIR}/xsrv.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsrv.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
@@ -31,9 +31,9 @@
 	</appender>
 	<appender name="FILE_AUDIT"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsrv/log/xsrv-audit.log</File>
+		<File>${LOG_DIR}/xsrv-audit.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv-audit.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsrv-audit.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
@@ -44,9 +44,9 @@
 	</appender>
 		<appender name="FILE_PERF"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsrv/log/xsrv-perf.log</File>
+		<File>${LOG_DIR}/xsrv-perf.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsrv/log/xsrv-perf.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsrv-perf.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
