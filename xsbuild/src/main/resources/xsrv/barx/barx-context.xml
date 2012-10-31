@@ -10,17 +10,9 @@
     </bean>
 	
 	<bean id="taker" class="com.flx.xs.xsrv.barx.BarxTakerApi" init-method="initialize" destroy-method="dispose">
-    	<property name="dataService" ref="dataservice"></property>
+    
+    
+    
     </bean>
-	    	<bean class="org.springframework.jmx.export.MBeanExporter"
-		lazy-init="false">
-		<property name="beans">
-			<map>
-				<entry key="xsrv:name=BarxTaker" value-ref="taker" />
-			</map>
-		</property>
-	</bean>
-	<bean class="org.springframework.jmx.support.ConnectorServerFactoryBean" >
-		<property name="serviceUrl" value="service:jmx:jmxmp://localhost:${barx.jmx.port}/MAKER" />
-	</bean>
+	
 </beans>
