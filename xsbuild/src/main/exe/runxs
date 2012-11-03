@@ -5,13 +5,7 @@ then
 fi
 PWD=`pwd`
 cd $XS_HOME/xs-current/$1
-#extract the CLASSPATH
-XS_CLASSPATH=`java -classpath $XS_HOME/xs-current/lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
-#set PATCH env variable if PATCH jar required
-XS_CLASSPATH=$1-1.0.0.jar:$PATCH:$XS_CLASSPATH
-#allow for insertion of additional or overide jars
-
-#extract the main class
+#extract the main class from the manifest
 XS_MAIN=`java -classpath $XS_HOME/xs-current/lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Main-Class`
 #create log folders if they don't currently exist
 #if there is one argument then the log folder is in the current folder
@@ -19,19 +13,37 @@ if [ $# -eq 1 ]
 then
         APP=$1
         LOG_DIR=$XS_HOME/xs-current/$1/log
+        XS_APP_DIR="."
 fi
 if [ $# -eq 2 ]
 then
         APP=$2
         LOG_DIR=$XS_HOME/xs-current/$1/$2/log
-        XS_APP_DIR="-DXS_APP_DIR=$APP"
+        XS_APP_DIR="$APP"
 fi
 if [ ! -d $LOG_DIR ]
 then
         mkdir $LOG_DIR
 fi
+
+#extract the CLASSPATH from the manifest
+XS_CLASSPATH=`java -classpath $XS_HOME/xs-current/lib/xscommon-1.0.0.jar com.flx.xs.common.util.ReadManifest $1-1.0.0.jar Class-Path :`
+#add in the actual application jar 
+XS_CLASSPATH=$1-1.0.0.jar:$XS_CLASSPATH
+#allow for insertion of additional or override jars..identified because file classpath.prefix is present
+#contents will be 1 line consisting : separated paths to jars...remember the current folder is $XS_HOME/xs-current/$1  
+if [ -f $XS_APP_DIR/classpath.prefix ]
+then
+	XS_CLASSPATH=`cat $XS_APP_DIR/classpath.prefix`:$XS_CLASSPATH
+fi
+#if PATCH env variable is set then insert it a beginning of classpath
+if [ $PATCH != "" ]
+then
+	XS_CLASSPATH=$PATCH:$XS_CLASSPATH
+fi
+
 #run ... set JDP env variable to debug params if needed
-COMMAND="java $JDP -DLOG_DIR=$LOG_DIR $XS_APP_DIR -classpath $XS_CLASSPATH $XS_MAIN $2"
+COMMAND="java -server $JDP -DLOG_DIR=$LOG_DIR -DXS_APP_DIR=$XS_APP_DIR -DLOG_OUTPUT=ASYNC_FILE -classpath $XS_CLASSPATH $XS_MAIN $2"
 echo $COMMAND >$LOG_DIR/$APP.cmd
 nohup $COMMAND 2>&1 > $LOG_DIR/$APP`date '+%Y_%m_%d:%H:%M:%S'`.nohup&
 echo $! >$LOG_DIR/$APP.pid
