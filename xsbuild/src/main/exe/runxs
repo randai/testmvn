@@ -3,6 +3,11 @@ then
         echo "XS_HOME must be set"
         exit 1
 fi
+if [ ! -f $XS_HOME/xs.properties ]
+then
+        echo "$XS_HOME must contain xs.properties file"
+        exit 1
+fi
 PWD=`pwd`
 cd $XS_HOME/xs-current/$1
 #extract the main class from the manifest
@@ -43,7 +48,7 @@ then
 fi
 
 #run ... set JDP env variable to debug params if needed
-COMMAND="java -server $JDP -DLOG_DIR=$LOG_DIR -DXS_APP_DIR=$XS_APP_DIR -DLOG_OUTPUT=ASYNC_FILE -classpath $XS_CLASSPATH $XS_MAIN $2"
+COMMAND="java -server $JDP -DLOG_DIR=$LOG_DIR -DXS_APP_DIR=$XS_APP_DIR -DpropertyPath=$XS_HOME/xs.properties -DLOG_OUTPUT=ASYNC_FILE -classpath $XS_CLASSPATH $XS_MAIN $2"
 echo $COMMAND >$LOG_DIR/$APP.cmd
 nohup $COMMAND 2>&1 > $LOG_DIR/$APP`date '+%Y_%m_%d:%H:%M:%S'`.nohup&
 echo $! >$LOG_DIR/$APP.pid

@@ -25,7 +25,7 @@
 				<version>2.2-beta-4</version>
 				<executions>
 					<execution>
-						<id>assembly</id>
+						<id>assembly-demo</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
@@ -39,7 +39,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>assembly2</id>
+						<id>assembly-scotia</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
@@ -49,6 +49,20 @@
 							<appendAssemblyId>false</appendAssemblyId>
 							<descriptors>
 								<descriptor>src/main/resources/assemblies/scotia.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					<execution>
+						<id>assembly-cibc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>cibc-${project.version}</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>src/main/resources/assemblies/cibc.xml</descriptor>
 							</descriptors>
 						</configuration>
 					</execution>

@@ -12,4 +12,5 @@ if [ $# -eq 2 ]
 then
         LOG_DIR=$XS_HOME/xs-current/$1/$2/log
 fi
+ls -lt $LOG_DIR
 tail -f $LOG_DIR/$1.log
