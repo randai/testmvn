@@ -13,6 +13,8 @@
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
 
+	<!-- Which taker server gets instantiated is determined by command line arg.
+	e.g. xsrun xsrv demo will use xsrv/demo/demo-context.xml (in xsbuild) which defines taker -->
 	<bean id="server" class="com.flx.xs.xsrv.TakerServer" init-method="initialize" destroy-method="dispose">
         <property name="TakerAdaptor" ref="taker"></property>
     </bean>

@@ -49,6 +49,7 @@ public class DemoTakerApi implements TakerApi  {
 	//@ManagedOperation(description="dispose")
 	@Override
 	public void dispose() {
+		dataService.dispose();
 		log.info("In dispose");
 		
 	}

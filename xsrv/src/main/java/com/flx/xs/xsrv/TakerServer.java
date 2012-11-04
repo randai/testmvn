@@ -19,6 +19,7 @@ public class TakerServer {
 	}
 
 	public void dispose() {
+		takerAdaptor.dispose();
 		log.info("In dispose");
 		
 	}

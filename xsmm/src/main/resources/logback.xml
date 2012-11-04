@@ -11,55 +11,60 @@
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 
 	<!--Daily rolling file appender -->
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsmm/log/xsmm.log</File>
+		<File>${LOG_DIR}/xsmm.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsmm/log/xsmm.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsmm.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 	<appender name="FILE_AUDIT"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsmm/log/xsmm-audit.log</File>
+		<File>${LOG_DIR}/xsmm-audit.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsmm/log/xsmm-audit.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsmm-audit.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 		<appender name="FILE_PERF"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${XS_HOME}/xs-current/xsmm/log/xsmm-perf.log</File>
+		<File>${LOG_DIR}/xsmm-perf.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${XS_HOME}/xsmm/log/xsmm-perf.%d{yyyy-MM-dd}.log
+			<FileNamePattern>${LOG_DIR}/xsmm-perf.%d{yyyy-MM-dd}.log
 			</FileNamePattern>
 		</rollingPolicy>
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 	
-	<appender name="ASYNC" class="com.flx.xs.common.logger.AsyncAppender">
+	<appender name="ASYNC_FILE" class="com.flx.xs.common.logger.AsyncAppender">
 		<param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
 		<param name="IncludeCallerData" value="true" /><!-- Default is false -->
 		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</appender>
+	<appender name="ASYNC_STDOUT" class="com.flx.xs.common.logger.AsyncAppender">
+		<param name="QueueCapacity" value="5000" /><!-- Default is 1000 -->
+		<param name="IncludeCallerData" value="true" /><!-- Default is false -->
 		<appender-ref ref="STDOUT" />
 	</appender>
 	<appender name="ASYNC_AUDIT" class="com.flx.xs.common.logger.AsyncAppender">
@@ -77,21 +82,24 @@
 		<level value="INFO" />
 	</logger>
 
-	<logger name="org.springframework">
+	<logger name="org.springframework" additivity="false">
 		<level value="INFO" />
+		<appender-ref ref="${LOG_OUTPUT}" />
 	</logger>
 	
 	<logger name="audit">
-		<level value="ASYNC_AUDIT" />
+		<level value="INFO" />
+		<appender-ref value="ASYNC_AUDIT" />
 	</logger>
 	
 	<logger name="performance">
-		<level value="ASYNC_PERF" />
+		<level value="INFO" />
+		<appender-ref value="ASYNC_PERF" />
 	</logger>
 		
 	<root>
 		<level value="INFO" />
-		<appender-ref ref="ASYNC" />
+		<appender-ref ref="${LOG_OUTPUT}" />
 	</root>
 	
 </configuration>

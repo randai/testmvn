@@ -11,7 +11,7 @@
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 
@@ -26,7 +26,7 @@
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 	<appender name="FILE_AUDIT"
@@ -39,7 +39,7 @@
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 		<appender name="FILE_PERF"
@@ -52,7 +52,7 @@
 
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<param name="Pattern"
-				value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+				value="%d{HH:mm:ss.SSS,${LOG_TZ}} [%thread] %-5level %logger{36} - %msg%n" />
 		</layout>
 	</appender>
 	

@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<bean id="taker" class="com.flx.xs.xsrv.demo.DemoTakerApi" init-method="initialize" destroy-method="dispose">
+	<bean id="taker" class="com.flx.xs.xsrv.demo.DemoTakerApi" init-method="initialize">
     	<property name="dataService" ref="dataservice"></property>
     	<property name="fileName" value="${XS_APP_DIR}/test.config"></property>
     </bean>

@@ -7,13 +7,20 @@ import com.flx.xs.common.logger.Logger;
 public class RemoteDataService implements FullDataService {
 	
 	@Logger private Log log;
+	
+	boolean disposed = false;
 	public void initialize() {
 		log.info("In initialize");
 		
 	}
 
 	public void dispose() {
-		log.info("In dispose");
+		if(disposed)
+			log.info("Already disposed");
+		else {
+			disposed = true;
+			log.info("In dispose");
+		}
 		
 	}
 	public String getApplication(String id) {
