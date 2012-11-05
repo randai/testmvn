@@ -1,5 +1,7 @@
 package com.flx.xs.xsrv;
 
+import java.util.TimeZone;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,6 +26,8 @@ public class Main {
 
     public static void main(String[] args)
     {
+    	TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+    	System.out.println("NOTE : This processes internal DEFAULT timezone has been set to GMT via Main() method");
     	String pathToApplicationContext = System.getProperty("pathToApplicationContext","classpath:/application-context.xml");
     	String[] contextPaths;
     	if(args.length > 0) {

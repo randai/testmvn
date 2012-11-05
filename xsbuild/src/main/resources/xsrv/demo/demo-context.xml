@@ -18,6 +18,6 @@
 		</property>
 	</bean>
 	<bean class="org.springframework.jmx.support.ConnectorServerFactoryBean" >
-		<property name="serviceUrl" value="service:jmx:jmxmp://localhost:${jmx.port.demo}/MAKER" />
+		<property name="serviceUrl" value="service:jmx:jmxmp://localhost:${jmx.port.demo}" />
 	</bean>	
 </beans>

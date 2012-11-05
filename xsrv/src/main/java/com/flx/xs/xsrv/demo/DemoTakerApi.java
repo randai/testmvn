@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.springframework.jmx.export.annotation.ManagedOperation;
@@ -27,7 +28,7 @@ public class DemoTakerApi implements TakerApi  {
 	}
 	@Override
 	public void initialize() {
-		log.info("In initialize fileName="+fileName);
+		log.info("In initialize fileName="+fileName+" at "+new Date());
 		try{
 			FileInputStream fstream = new FileInputStream(fileName);
 		  // Get the object of DataInputStream
