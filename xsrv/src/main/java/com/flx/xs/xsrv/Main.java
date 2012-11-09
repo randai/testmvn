@@ -40,14 +40,6 @@ public class Main {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(contextPaths);
         log = LogFactory.getLog(Main.class);
         ctx.registerShutdownHook();
-        try {
-        	synchronized (pathToApplicationContext) {
-    			pathToApplicationContext.wait();
-				
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        log.info("main thread finished...process started.");
     }
 }

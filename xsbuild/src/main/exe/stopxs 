@@ -1,0 +1,36 @@
+if [ "$XS_HOME" = "" ]
+then
+        echo "XS_HOME must be set"
+        exit 1
+fi
+#if there is one argument then the log folder is in the app folder otherwise its the sub-app folder
+if [ $# -eq 1 ]
+then
+        LOG_DIR=$XS_HOME/xs-current/$1/log
+        APP=$1
+fi
+if [ $# -eq 2 ]
+then
+        LOG_DIR=$XS_HOME/xs-current/$1/$2/log
+        APP=$2
+fi
+if [ ! -f $LOG_DIR/$APP.pid ]
+then
+        echo "$LOG_DIR/$APP.pid does not exist..process is not running"
+        exit -1
+fi
+
+PID=`cat $LOG_DIR/$APP.pid`
+kill -0 $PID >/dev/null 2>&1
+if [ $? = "0" ]
+then
+        kill $PID >/dev/null 2>&1
+        if [ $? = "0" ]
+        then
+                echo $APP pid=$PID signal to stop sent...
+        else
+                echo $APP pid=$PID not running
+        fi
+else
+        echo $APP pid=$PID not running
+fi

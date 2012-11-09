@@ -9,7 +9,7 @@ then
         exit 1
 fi
 
-LOG_DIR=`cat $XS_HOME/xs.properties|grep LOG_TZ|cut -d= -f2`
+LOG_TZ=`cat $XS_HOME/xs.properties|grep LOG_TZ|cut -d= -f2`
 
 PWD=`pwd`
 cd $XS_HOME/xs-current/$1
@@ -45,7 +45,7 @@ then
 	XS_CLASSPATH=`cat $XS_APP_DIR/classpath.prefix`:$XS_CLASSPATH
 fi
 #if PATCH env variable is set then insert it a beginning of classpath
-if [ $PATCH != "" ]
+if [ "$PATCH" != "" ]
 then
 	XS_CLASSPATH=$PATCH:$XS_CLASSPATH
 fi
@@ -53,6 +53,6 @@ fi
 #run ... set JDP env variable to debug params if needed
 COMMAND="java -server $JDP -DLOG_DIR=$LOG_DIR -DXS_APP_DIR=$XS_APP_DIR -DpropertyPath=$XS_HOME/xs.properties -DLOG_OUTPUT=ASYNC_FILE -DLOG_TZ=$LOG_TZ -classpath $XS_CLASSPATH $XS_MAIN $2"
 echo $COMMAND >$LOG_DIR/$APP.cmd
-nohup $COMMAND 2>&1 > $LOG_DIR/$APP`date '+%Y_%m_%d:%H:%M:%S'`.nohup&
+nohup $COMMAND  > $LOG_DIR/$APP`date '+%Y_%m_%d:%H:%M:%S'`.nohup 2>&1&
 echo $! >$LOG_DIR/$APP.pid
 cd $PWD

@@ -50,9 +50,12 @@ public class DemoTakerApi implements TakerApi  {
 	//@ManagedOperation(description="dispose")
 	@Override
 	public void dispose() {
-		dataService.dispose();
-		log.info("In dispose");
-		
+		if(dataService == null) {
+			log.info("Already disposed");
+		} else {
+			log.info("In dispose");
+			dataService.dispose();
+		}
 	}
 
 	FullDataService dataService;
