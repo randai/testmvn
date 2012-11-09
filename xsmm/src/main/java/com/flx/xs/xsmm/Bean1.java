@@ -1,6 +1,6 @@
 package com.flx.xs.xsmm;
 
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 
 public class Bean1 implements IBean1 {
 
@@ -14,7 +14,7 @@ public class Bean1 implements IBean1 {
     }
 
     @Override
-    @Value("${var1}")
+    //@Value("${var1}")
     public void setVar1(String var1) {
         this.var1 = var1;
     }
