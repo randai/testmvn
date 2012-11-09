@@ -1,5 +1,7 @@
 package com.flx.xs.xsds;
 
+import java.sql.SQLException;
+
 import com.flx.xs.common.data.FullDataService;
 import com.flx.xs.common.logger.Logger;
 
@@ -18,7 +20,11 @@ public class LocalDataService implements FullDataService {
 
 	@Override
 	public void initialize() {
-		log.info("In Initialize...DataSource details are :"+dataSource.toString());
+		try {
+			log.info("In Initialize...testing connection :"+dataSource.getConnection());
+		} catch (SQLException e) {
+			log.error("Connection Error",e);
+		}
 		
 	}
 
@@ -30,13 +36,18 @@ public class LocalDataService implements FullDataService {
 
 	@Override
 	public String getApplication(String id) {
-		// TODO Auto-generated method stub
+		try {
+			dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 
 	@Override
 	public String getProduct(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
