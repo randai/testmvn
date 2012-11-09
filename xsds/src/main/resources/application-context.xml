@@ -18,4 +18,28 @@
         <property name="var1" value="${ss}"></property>
         </bean>
     <bean id="runner" class="com.flx.xs.xsds.Runner"/>
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+       <property name="driverClassName" value="${db.driver}" />
+       <property name="url" value="${db.url}" />
+       <property name="username" value="${db.username}" />
+       <property name="password" value="${db.password}" />
+       <property name="maxIdle" value="10" />
+       <property name="maxActive" value="100" />
+       <property name="maxWait" value="10000" />
+       <property name="validationQuery" value="SELECT count(*) FROM XSTREAMAPPLICATION" />
+       <property name="testOnBorrow" value="false" />
+       <property name="testWhileIdle" value="true" />
+       <property name="timeBetweenEvictionRunsMillis" value="1200000" />
+       <property name="minEvictableIdleTimeMillis" value="1800000" />
+       <property name="numTestsPerEvictionRun" value="5" />
+       <property name="defaultAutoCommit" value="true" />
+    </bean>
+    
+    <bean id="DataService"
+		class="com.flx.xs.xsds.LocalDataService" init-method="initialize" destroy-method="dispose">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+    
+    
 </beans>
