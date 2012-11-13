@@ -22,6 +22,8 @@ public class Runner implements IRunner {
         log.info(bean1.hello("world"));
         log.debug(bean1.hello("world"));
         log.error(bean1.hello("world"));
+        
+        log.info(bean1.getFlxConfigValue1());
     }
 
     @Autowired

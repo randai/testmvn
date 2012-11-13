@@ -16,6 +16,7 @@
     
     <bean id="bean1" class="com.flx.xs.xsmm.Bean1">
         <property name="var1" value="${ss}"></property>
+       <property name="flxConfigValue1" value="${flxConfigValue1}"></property>
         </bean>
     <!-- This class has bean1 autowired into it.. -->    
     <bean id="runner" class="com.flx.xs.xsmm.Runner"/>
