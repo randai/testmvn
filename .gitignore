@@ -3,4 +3,5 @@ xsbuild/target
 xscommon/target
 xsds/target
 xsmm/target
+xsmon/target
 xsrv/target
