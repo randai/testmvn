@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/xsmon/src/main/java/com/flx/xs/xsmon/Main.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.flx.xs.xsmon.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="xsmon"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="xsmon"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DpropertyPath=${env_var:HOME}/xs-home/xs.properties&#10;-DLOG_TZ=America/Toronto&#10;-DLOG_DIR=${env_var:HOME}/xs-home/xs-current/xsmon/log&#10;-DLOG_OUTPUT=ASYNC_STDOUT&#10;-DXS_APP_DIR=${workspace_loc:xsbuild}/src/main/resources/xsmon"/>
+</launchConfiguration>
