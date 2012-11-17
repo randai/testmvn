@@ -12,9 +12,15 @@ package com.flx.xs.xsmon.ui;
  */
 public class MonitorFrame extends javax.swing.JFrame {
 
+	private String title;
+	
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	/** Creates new form MonitorFrame */
 	public MonitorFrame() {
-		initComponents();
 	}
 
 	/** This method is called from within the constructor to
@@ -127,12 +133,16 @@ public class MonitorFrame extends javax.swing.JFrame {
 	//GEN-END:initComponents
 
 	/**
-	 * @param args the command line arguments
+	 * Start the swing stuff in the AWT thread
 	 */
-	public static void main(String args[]) {
+	public void initialize () {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new MonitorFrame().setVisible(true);
+				initComponents();
+				
+				jLabel1.setText(title);
+				
+				setVisible(true);
 			}
 		});
 	}

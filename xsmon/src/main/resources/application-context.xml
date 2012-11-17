@@ -13,12 +13,20 @@
 		<property name="propertyLocationSystemProperty" value="propertyPath" />
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
+	
+	<bean id="controller" class="com.flx.xs.xsmon.ui.MonitorController" init-method="initialize">
+       <property name="monitorFrame" ref="monitorframe"></property>
+    </bean>
+ 	<bean id="monitorframe" class="com.flx.xs.xsmon.ui.MonitorFrame">
+       <property name="title" value="some text"></property>
+    </bean>
+    
 	<!--  
     <bean class="org.springframework.jmx.export.MBeanExporter"
 		lazy-init="false">
 		<property name="beans">
 			<map>
-				<entry key="xsrv:name=MainServer" value-ref="server" />
+				<entry key="xsmon:name=MainServer" value-ref="controller" />
 				<entry key="xsrv:name=RemoteDataService" value-ref="dataservice" />
 			</map>
 		</property>
