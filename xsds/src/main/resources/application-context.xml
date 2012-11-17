@@ -13,9 +13,49 @@
 		<property name="propertyLocationSystemProperty" value="propertyPath" />
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
+	
+	<!-- Expose the classes you wish here to via JMX -->
+	<bean class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="xsds:name=MainServer" value-ref="runner" />
+				<entry key="xsds:name=LocalDataService" value-ref="DataService" />
+				<entry key="xsds:name=DataSource" value-ref="dataSource" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.jmx.support.MBeanServerFactoryBean" />
+	
     
     <bean id="bean1" class="com.flx.xs.xsds.Bean1">
         <property name="var1" value="${ss}"></property>
         </bean>
-    <bean id="runner" class="com.flx.xs.xsds.Runner"/>
+        
+    <bean id="runner" class="com.flx.xs.xsds.Runner" destroy-method="dispose"/>
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+       <property name="driverClassName" value="${db.driver}" />
+       <property name="url" value="${db.url}" />
+       <property name="username" value="${db.username}" />
+       <property name="password" value="${db.password}" />
+       <property name="maxIdle" value="10" />
+       <property name="maxActive" value="100" />
+       <property name="maxWait" value="10000" />
+       <property name="validationQuery" value="SELECT count(*) FROM XSTREAMAPPLICATION" />
+       <property name="testOnBorrow" value="false" />
+       <property name="testWhileIdle" value="true" />
+       <property name="timeBetweenEvictionRunsMillis" value="1200000" />
+       <property name="minEvictableIdleTimeMillis" value="1800000" />
+       <property name="numTestsPerEvictionRun" value="5" />
+       <property name="defaultAutoCommit" value="true" />
+    </bean>
+    
+    <bean id="DataService"
+		class="com.flx.xs.xsds.LocalDataService" init-method="initialize" destroy-method="dispose">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+    
+    
 </beans>

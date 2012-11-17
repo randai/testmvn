@@ -10,6 +10,13 @@
 	<fileSets>
 		<fileSet>
 			<outputDirectory>xs-${project.version}/</outputDirectory>
+			<directory>../xsds/target/dist</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+	    		<fileSet>
+			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsmm/target/dist</directory>
 			<includes>
 				<include>**/*</include>

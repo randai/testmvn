@@ -9,13 +9,6 @@
 	<fileSets>
 		<fileSet>
 			<outputDirectory>xs-${project.version}/</outputDirectory>
-			<directory>../xsmm/target/dist</directory>
-			<includes>
-				<include>**/*</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<outputDirectory>xs-${project.version}/</outputDirectory>
 			<directory>../xsrv/target/dist</directory>
 			<includes>
 				<include>**/*</include>
@@ -28,6 +21,15 @@
 				<include>**/*</include>
 			</includes>
 		</fileSet>
+		<fileSet>
+			<outputDirectory>xs-${project.version}/bin</outputDirectory>
+			<fileMode>755</fileMode>
+			<directory>src/main/exe</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+		
 		<fileSet>
 			<outputDirectory>xs-${project.version}/xsrv/barx</outputDirectory>
 			<directory>src/main/resources/xsrv/barx</directory>

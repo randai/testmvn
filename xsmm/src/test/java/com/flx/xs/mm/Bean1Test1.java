@@ -38,7 +38,7 @@ public class Bean1Test1 {
         result = bean1.hello("world");
 
         //then
-        assertThat(result).isEqualTo("Hello, world");
+        assertThat(result).isEqualTo("Hello, worldxxxxccc");
 
     }
 }
