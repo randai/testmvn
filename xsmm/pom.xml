@@ -58,8 +58,20 @@
 			<version>0.3.7</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+  <groupId>nf.fr.eraasoft</groupId>
+  <artifactId>objectpool</artifactId>
+  <version>1.1</version>
+</dependency>
 	</dependencies>
-
+<repositories>
+  <repository>
+     <id>oss.sonatype</id>
+     <name>Sonatype repository</name>
+     <url>http://oss.sonatype.org/content/groups/public</url>
+  </repository>
+</repositories>
 	<properties>
 		<mvn.spring.version>3.1.0.RELEASE</mvn.spring.version>
 		<mvn.project.build.sourceEncoding>UTF-8</mvn.project.build.sourceEncoding>

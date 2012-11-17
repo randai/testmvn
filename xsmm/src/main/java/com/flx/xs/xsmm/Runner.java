@@ -3,6 +3,11 @@ package com.flx.xs.xsmm;
 import com.flx.xs.common.logger.Logger;
 
 
+import nf.fr.eraasoft.pool.ObjectPool;
+import nf.fr.eraasoft.pool.PoolException;
+import nf.fr.eraasoft.pool.PoolSettings;
+import nf.fr.eraasoft.pool.PoolableObjectBase;
+
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +29,42 @@ public class Runner implements IRunner {
 
 		log.info(bean1.getFlxConfigValue1());
 		
+		PoolSettings poolSettings = new PoolSettings(new MyPoolableObjectBase());
+		
+		// Add some settings
+		poolSettings.min(0).max(10);
+
+		// Get the objectPool instance using a Singleton Design Pattern is a
+		// good idea
+		ObjectPool<StringBuilder> objectPool = poolSettings.pool();
+
+		// Use your pool
+		StringBuilder buffer = null;
+		try {
+			buffer = objectPool.getObj();
+			// Do something with your object
+			buffer.append("yyyy");
+		} catch (PoolException e) {
+			e.printStackTrace();
+		} finally {
+			// Don't forget to return object in the pool
+			objectPool.returnObj(buffer);
+		}
+		log.info("Finished creating pool");
+		
 	}
-	@Autowired
+	class MyPoolableObjectBase extends PoolableObjectBase<StringBuilder>{
+
+        @Override
+        public StringBuilder make() {
+                return new StringBuilder();
+        }
+        @Override
+        public void activate(StringBuilder t) {
+                t.setLength(0);
+        }
+		
+	}	@Autowired
 	@Override
 	public void setBean1(IBean1 bean1) {
 		this.bean1 = bean1;
