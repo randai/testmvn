@@ -16,6 +16,8 @@
 		<module>../xscommon</module>
 		<module>../xsrv</module>
 		<module>../xsds</module>
+		<module>../xsmon</module>
+		<module>../xsweb</module>
 	</modules>
 	
 	<build>
