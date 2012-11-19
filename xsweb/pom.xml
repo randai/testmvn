@@ -1,0 +1,222 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>xs</artifactId>
+		<groupId>com.flx.xs</groupId>
+		<version>1.0.0</version>
+		<relativePath>../xs/pom.xml</relativePath>
+	</parent>
+	<groupId>com.flx.xs</groupId>
+	<artifactId>xsweb</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
+
+	<name>xsweb</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.java.jnlp</groupId>
+			<artifactId>jnlp-servlet</artifactId>
+			<version>5.0</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<!-- Properties for keystore generation -->
+		<gemserk.keystore>/tmp/keystore</gemserk.keystore>
+		<gemserk.keypass>m2m2m2</gemserk.keypass>
+		<gemserk.storepass>m2m2m2</gemserk.storepass>
+		<gemserk.alias>financialogixgroup.com</gemserk.alias>
+		<gemserk.keystore.delete>true</gemserk.keystore.delete>
+		<gemserk.keystore.gen>true</gemserk.keystore.gen>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webstart-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>jnlp-download-servlet</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+
+					<!-- This is the directory containing the Velocity templates from which 
+						the JNLP files will be generated. The default location is 'src/main/jnlp'. -->
+					<templateDirectory>src/main/jnlp/templates</templateDirectory>
+
+					<!-- This is the name of the directory within which the processed JNLP 
+						artifacts will be placed. This directory will reside in the root of the WAR 
+						file produced by the enclosing project. The name provided here must match 
+						the servlet-mapping url-pattern provided in the web.xml file. The default 
+						value is 'webstart'. -->
+					<outputDirectoryName>applications</outputDirectoryName>
+
+					<jnlpFiles>
+
+						<jnlpFile>
+							<templateFilename>xsmon.vm</templateFilename>
+							<outputFilename>xsmon.jnlp</outputFilename>
+							<jarResources>
+								<jarResource>
+									<groupId>com.flx.xs</groupId>
+									<artifactId>xsmon</artifactId>
+									<version>1.0.0</version>
+									<!-- A mainClass element must be specified on one, and only one, 
+										jarResource per jnlpFile -->
+									<mainClass>com.flx.xs.xsmon.Main</mainClass>
+								</jarResource>
+								<jarResource>
+									<groupId>com.flx.xs</groupId>
+									<artifactId>xscommon</artifactId>
+									<version>1.0.0</version>
+								</jarResource>
+							</jarResources>
+						</jnlpFile>
+
+					</jnlpFiles>
+					<sign>
+						<keystore>${gemserk.keystore}</keystore>
+						<keypass>${gemserk.keypass}</keypass>
+						<storepass>${gemserk.storepass}</storepass>
+						<alias>${gemserk.alias}</alias>
+						
+						
+						<validity>3650</validity>
+						<dnameCn>financialogix</dnameCn>
+						<dnameOu>Software Development</dnameOu>
+						<dnameO>financialogix</dnameO>
+						<dnameL>xs</dnameL>
+						<dnameSt>xs</dnameSt>
+						<dnameC>CA</dnameC>
+						<verify>false</verify>
+						<keystoreConfig>
+							<delete>true</delete>
+							<gen>true</gen>
+						</keystoreConfig>
+					</sign>
+					<outputJarVersions>true</outputJarVersions>
+					<verbose>true</verbose>
+					<verifyjar>false</verifyjar>
+					<unsign>true</unsign>
+					<!--  Jar resources that are to be included in 
+						all generated JNLP files are specified here. If specified here, they cannot 
+						also be included in a jnlpFile configuration element. -->
+					<commonJarResources>
+						<jarResource>
+							<groupId>commons-lang</groupId>
+							<artifactId>commons-lang</artifactId>
+							<version>2.3</version>
+						</jarResource>
+						<jarResource>
+							<groupId>commons-lang</groupId>
+							<artifactId>commons-lang</artifactId>
+							<version>2.2</version>
+							<!-- When deploying multiple versions of an artifact, only one of 
+								them can be included in the generated JNLP file. -->
+							<includeInJnlp>false</includeInJnlp>
+						</jarResource>
+					</commonJarResources>
+
+					<!-- Set to true to exclude all transitive dependencies from the JNLP 
+						bundle. Default is false. -->
+
+					<excludeTransitive>false</excludeTransitive>
+
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											webstart-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0-beta-3,)
+										</versionRange>
+										<goals>
+											<goal>
+												jnlp-download-servlet
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>useDeploymentCertificate</id>
+			<properties>
+				<gemserk.keystore>/opt/gemserk-keystore</gemserk.keystore>
+				<gemserk.keypass>password</gemserk.keypass>
+				<gemserk.storepass>password</gemserk.storepass>
+				<gemserk.alias>gemserk.com</gemserk.alias>
+				<gemserk.keystore.delete>false</gemserk.keystore.delete>
+				<gemserk.keystore.gen>false</gemserk.keystore.gen>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>
