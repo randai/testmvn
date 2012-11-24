@@ -16,6 +16,13 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+	    <dependency>
+			<groupId>com.flx.xs</groupId>
+			<artifactId>xscommon</artifactId>
+			<version>1.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+	    
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -34,9 +41,23 @@
 			<version>5.0</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${mvn.spring.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-web</artifactId>
+    		<version>${mvn.spring.version}</version>
+    		<scope>runtime</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<properties>
+	    <mvn.spring.version>3.1.0.RELEASE</mvn.spring.version>
 		<!-- Properties for keystore generation -->
 		<gemserk.keystore>/tmp/keystore</gemserk.keystore>
 		<gemserk.keypass>m2m2m2</gemserk.keypass>
@@ -61,6 +82,12 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+				<configuration>
+    				<scanIntervalSeconds>10</scanIntervalSeconds>
+    				<contextPath>/xsweb-1.0.0</contextPath>
+    				<!-- <stopKey>foo</stopKey>
+   					<stopPort>9999</stopPort> -->
+				</configuration>
 			</plugin>
 
 			<plugin>
@@ -102,15 +129,18 @@
 										jarResource per jnlpFile -->
 									<mainClass>com.flx.xs.xsmon.Main</mainClass>
 								</jarResource>
+								<!--  
 								<jarResource>
 									<groupId>com.flx.xs</groupId>
 									<artifactId>xscommon</artifactId>
 									<version>1.0.0</version>
 								</jarResource>
+								-->
 							</jarResources>
 						</jnlpFile>
 
 					</jnlpFiles>
+					<!--
 					<sign>
 						<keystore>${gemserk.keystore}</keystore>
 						<keypass>${gemserk.keypass}</keypass>
@@ -131,11 +161,15 @@
 							<gen>true</gen>
 						</keystoreConfig>
 					</sign>
+					-->
 					<outputJarVersions>true</outputJarVersions>
 					<verbose>true</verbose>
 					<verifyjar>false</verifyjar>
+					
+					<!-- 
+					
 					<unsign>true</unsign>
-					<!--  Jar resources that are to be included in 
+					 Jar resources that are to be included in 
 						all generated JNLP files are specified here. If specified here, they cannot 
 						also be included in a jnlpFile configuration element. -->
 					<commonJarResources>
