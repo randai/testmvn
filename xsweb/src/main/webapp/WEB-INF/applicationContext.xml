@@ -13,4 +13,7 @@
 		<property name="propertyLocationSystemProperty" value="propertyPath" />
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
+	
+	
+	
 </beans>

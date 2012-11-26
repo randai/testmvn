@@ -13,14 +13,22 @@
     	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-    <servlet>
+	<servlet>
         <servlet-name>JnlpDownloadServlet</servlet-name>
         <servlet-class>jnlp.sample.servlet.JnlpDownloadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApplicationPropertiesServlet</servlet-name>
+        <servlet-class>com.flx.xs.xsweb.ApplicationPropertiesServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>JnlpDownloadServlet</servlet-name>
         <url-pattern>/applications/*</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>ApplicationPropertiesServlet</servlet-name>
+        <url-pattern>/config/*</url-pattern>
     </servlet-mapping>
     
 </web-app>
