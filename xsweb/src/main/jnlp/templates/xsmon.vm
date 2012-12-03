@@ -20,5 +20,6 @@
      $dependencies
   </resources>
   <application-desc main-class="$mainClass">
+  	<argument>webstart</argument> 
   </application-desc>
 </jnlp>

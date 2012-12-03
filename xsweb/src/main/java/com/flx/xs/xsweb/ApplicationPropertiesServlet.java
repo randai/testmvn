@@ -18,8 +18,7 @@ public class ApplicationPropertiesServlet extends GenericServlet {
 		res.setContentType("text/plain");
 
 		PrintWriter out = res.getWriter();
-		Properties props;
-		props = System.getProperties(); // get server JVM properties
+		Properties props  = WebAppInitialisation.getInstance().getAppContext().getBean("applicationProps", Properties.class);
 		Enumeration enprop = props.propertyNames();
 		String key;
 		while (enprop.hasMoreElements()) {

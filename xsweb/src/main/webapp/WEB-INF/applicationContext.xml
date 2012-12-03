@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:annotation-config/>
-    <context:component-scan base-package="com.flx.xs"/>
+	<context:annotation-config />
+	<context:component-scan base-package="com.flx.xs" />
 
-	<bean id="propertyConfigurer"
-		class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder">
-		<property name="propertyLocationSystemProperty" value="propertyPath" />
-		<property name="ignoreResourceNotFound" value="false" />
+	<!-- <bean id="propertyConfigurer" class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder"> 
+		<property name="propertyLocationSystemProperty" value="propertyPath" /> <property 
+		name="ignoreResourceNotFound" value="false" /> </bean> 
+		
+	-->
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyConfigurer">
+		<property name="properties" ref="applicationProps" />
 	</bean>
-	
-	
-	
+
+	<bean id="applicationProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="file:${propertyPath}" />
+	</bean>
+
+	<bean id="webaAppInitialisation" class="com.flx.xs.xsweb.WebAppInitialisation">
+		<property name="location" value="${xs.prop.p2}" />
+	</bean>
+
 </beans>

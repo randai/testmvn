@@ -10,7 +10,7 @@ import com.flx.xs.common.logger.Logger;
 
 /**
  * Created by andy.
- * Main class to start an application
+ * Main class to start a GUI application
  */
 public class Main {
 	
@@ -20,16 +20,17 @@ public class Main {
     {
     	TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     	System.out.println("NOTE : This processes internal DEFAULT timezone has been set to GMT via Main() method");
-    	String pathToApplicationContext = System.getProperty("pathToApplicationContext","classpath:/application-context.xml");
-    	String[] contextPaths;
+    	String pathToApplicationContext = null;
     	if(args.length > 0) {
-    		String pathPrefix = System.getProperty("XS_APP_DIR") != null ? System.getProperty("XS_APP_DIR") +"/" : "";
-    		String pathToTakerContext = "file:"+pathPrefix + args[0]+"-context.xml";
-    		contextPaths = new String[] {pathToApplicationContext,pathToTakerContext};
-    	} else {
-    		contextPaths = new String[] {pathToApplicationContext};
+    		if("webstart".equals(args[0])){
+    			pathToApplicationContext = "classpath:/application-context-webstart.xml";
+    		}
     	}
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(contextPaths);
+    	if(pathToApplicationContext == null)
+    		pathToApplicationContext = System.getProperty("pathToApplicationContext","classpath:/application-context-standalone.xml");
+    	String pathToMoniorContext = System.getProperty("pathToMonitorContext","classpath:/xsmon-context.xml");
+    	String[] contextPaths = new String[] {pathToApplicationContext,pathToMoniorContext};
+         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(contextPaths);
         log = LogFactory.getLog(Main.class);
         ctx.registerShutdownHook();
         log.info("main thread finished...process started.");

@@ -45,13 +45,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${mvn.spring.version}</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-web</artifactId>
     		<version>${mvn.spring.version}</version>
-    		<scope>runtime</scope>
+    		<scope>compile</scope>
 		</dependency>
 		
 	</dependencies>
@@ -140,7 +140,7 @@
 						</jnlpFile>
 
 					</jnlpFiles>
-					<!--
+					
 					<sign>
 						<keystore>${gemserk.keystore}</keystore>
 						<keypass>${gemserk.keypass}</keypass>
@@ -161,10 +161,11 @@
 							<gen>true</gen>
 						</keystoreConfig>
 					</sign>
-					-->
+					
 					<outputJarVersions>true</outputJarVersions>
 					<verbose>true</verbose>
 					<verifyjar>false</verifyjar>
+					
 					
 					<!-- 
 					
