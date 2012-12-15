@@ -65,7 +65,13 @@
 			<artifactId>jmxremote_optional</artifactId>
 			<version>1.0_01-ea</version>
 		</dependency>
-
+		<dependency>
+            <groupId>javax.jnlp</groupId>
+            <artifactId>jnlp</artifactId>
+            <version>1.6</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/lib/javaws.jar</systemPath>
+        </dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

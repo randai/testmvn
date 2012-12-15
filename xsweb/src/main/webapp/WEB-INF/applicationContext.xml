@@ -7,12 +7,6 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.flx.xs" />
 
-	<!-- <bean id="propertyConfigurer" class="com.flx.xs.common.util.ConfigurablePropertyPlaceholder"> 
-		<property name="propertyLocationSystemProperty" value="propertyPath" /> <property 
-		name="ignoreResourceNotFound" value="false" /> </bean> 
-		
-	-->
-	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyConfigurer">
 		<property name="properties" ref="applicationProps" />
 	</bean>
@@ -21,8 +15,7 @@
 		<property name="location" value="file:${propertyPath}" />
 	</bean>
 
-	<bean id="webaAppInitialisation" class="com.flx.xs.xsweb.WebAppInitialisation">
-		<property name="location" value="${xs.prop.p2}" />
+	<bean id="webAppInitialisation" class="com.flx.xs.xsweb.WebAppInitialisation">
 	</bean>
 
 </beans>

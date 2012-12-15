@@ -8,9 +8,8 @@
 	<bean id="controller" class="com.flx.xs.xsmon.ui.MonitorController" init-method="initialize">
        <property name="monitorFrame" ref="monitorframe"></property>
     </bean>
-    <!--  
+    
  	<bean id="monitorframe" class="com.flx.xs.xsmon.ui.MonitorFrame">
-       <property name="title" value="some text"></property>
+       <property name="title" value="${xs.prop.p2}"></property>
     </bean>
-    -->
 </beans>

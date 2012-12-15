@@ -3,10 +3,13 @@ package com.flx.xs.xsweb;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-
+/**
+ * Convenient way for classes not instantiated thru spring to get the spring application context..e.g. a servlet
+ * @author andy
+ *
+ */
 public class WebAppInitialisation implements ApplicationContextAware {
 	private static WebAppInitialisation instance;
-	private String location;
 	private ApplicationContext appContext;
 	
 
@@ -16,15 +19,6 @@ public class WebAppInitialisation implements ApplicationContextAware {
 	
 	public static WebAppInitialisation getInstance() {
 		return instance;
-	}
-	
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-		System.out.println("location="+location);
 	}
 	
 	public ApplicationContext getAppContext() {

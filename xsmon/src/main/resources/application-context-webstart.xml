@@ -11,8 +11,5 @@
 	<bean id="propertyConfigurer"
 		class="com.flx.xs.common.util.ConfigurablePropertyViaServlet">
 	</bean>
-		<bean id="monitorframe" class="com.flx.xs.xsmon.ui.MonitorFrame">
-       <property name="title" value="WEBSTART"></property>
-    </bean>
 	
 </beans>

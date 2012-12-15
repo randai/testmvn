@@ -13,8 +13,5 @@
 		<property name="propertyLocationSystemProperty" value="propertyPath" />
 		<property name="ignoreResourceNotFound" value="false" />
 	</bean>
-	<bean id="monitorframe" class="com.flx.xs.xsmon.ui.MonitorFrame">
-       <property name="title" value="some text"></property>
-    </bean>
 	
 </beans>

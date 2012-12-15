@@ -9,9 +9,14 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
+/**
+ * This servlet identifies properties that are safe and appropriate to send out to a web application from the main 
+ * application properties.
+ * @author andy
+ *
+ */
 public class ApplicationPropertiesServlet extends GenericServlet {
-
+	
 	@Override
 	public void service(ServletRequest req, ServletResponse res)
 			throws ServletException, IOException {

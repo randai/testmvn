@@ -1,18 +1,24 @@
 package com.flx.xs.common.util;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.jnlp.BasicService;
+import javax.jnlp.ServiceManager;
+
 /**
  * ConfigurablePropertyPlaceholder takes instructions which SystemProperty
  * contains the path to the propertyfile to load.
  * 
  */
-public class ConfigurablePropertyViaServlet extends PropertyPlaceholderConfigurer {
+public class ConfigurablePropertyViaServlet extends PropertyPlaceholderConfigurer implements ApplicationContextAware {
 
 
     private String propertyLocationSystemProperty;
@@ -45,22 +51,35 @@ public class ConfigurablePropertyViaServlet extends PropertyPlaceholderConfigure
     @Override
     protected void loadProperties(Properties props) throws IOException {
         Resource location = null;
-        if(propertyLocationSystemProperty != null && propertyLocationSystemProperty.length() > 0){
-
-            String propertyFilePath = System.getProperties().getProperty(propertyLocationSystemProperty);
-            if(propertyFilePath==null)
-            	return;
-            StringBuilder pathBuilder = new StringBuilder(propertyFilePath);
-
-            if(defaultPropertyFileName != null && defaultPropertyFileName.length() > 0 && !propertyFilePath.endsWith(defaultPropertyFileName)){
-                pathBuilder.append("/").append(defaultPropertyFileName);
-            }
-
-            location = new FileSystemResource(pathBuilder.toString());
+        String webAppContextUrl=null;
+        try
+        {
+          BasicService basicService =
+              (BasicService) ServiceManager.lookup( "javax.jnlp.BasicService" );
+          String codeBase = basicService.getCodeBase().toExternalForm();
+          System.out.println("codeBase=["+codeBase+"]");
+          if ( !codeBase.endsWith( "/" ) )
+          {
+            codeBase += "/";
+          }
+          int webAppContextUrlLength =
+              codeBase.lastIndexOf("applications");
+          webAppContextUrl = codeBase.substring( 0, webAppContextUrlLength)+"config/";
+          System.out.println("webAppContextUrl=["+webAppContextUrl+"]");
+        } catch ( Exception e ) {
+          // TODO logging
+          e.printStackTrace();
         }
-
+        location = appContext.getResource("url:"+webAppContextUrl);
+        
         setLocation(location);
         super.loadProperties(props);
     }
+    private ApplicationContext appContext;
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		appContext = applicationContext;
+		
+	}
 }
 

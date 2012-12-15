@@ -6,17 +6,22 @@
 
 package com.flx.xs.xsmon.ui;
 
+import org.apache.commons.logging.Log;
+
+import com.flx.xs.common.logger.Logger;
+
 /**
  *
  * @author  __USER__
  */
 public class MonitorFrame extends javax.swing.JFrame {
-
+	@Logger private static Log log;
+	
 	private String title;
-	
-	
+
 	public void setTitle(String title) {
 		this.title = title;
+		//log.info("Setting title to "+title);
 	}
 
 	/** Creates new form MonitorFrame */
@@ -48,6 +53,11 @@ public class MonitorFrame extends javax.swing.JFrame {
 		jLabel1.setText("Top Panel");
 
 		jButton1.setText("Exit");
+		jButton1.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton1ActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
 				jPanel1);
@@ -132,16 +142,20 @@ public class MonitorFrame extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+		log.info("Button Clicked");
+	}
+
 	/**
 	 * Start the swing stuff in the AWT thread
 	 */
-	public void initialize () {
+	public void initialize() {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				initComponents();
-				
+
 				jLabel1.setText(title);
-				
+
 				setVisible(true);
 			}
 		});
