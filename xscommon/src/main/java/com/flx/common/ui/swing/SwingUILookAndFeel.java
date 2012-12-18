@@ -46,7 +46,243 @@ implements	ChangeListener,
 		return Instance;
 	}
 	
+	public int getBannerImageAlignment() {
+		return bannerImageAlignment;
+	}
+
+	public void setBannerImageAlignment(int bannerImageAlignment) {
+		this.bannerImageAlignment = bannerImageAlignment;
+	}
+
+	public String getBannerLeftImageLocation() {
+		return bannerLeftImageLocation;
+	}
+
+	public void setBannerLeftImageLocation(String bannerLeftImageLocation) {
+		this.bannerLeftImageLocation = bannerLeftImageLocation;
+	}
+
+	public int getBannerLeftImageAlignment() {
+		return bannerLeftImageAlignment;
+	}
+
+	public void setBannerLeftImageAlignment(int bannerLeftImageAlignment) {
+		this.bannerLeftImageAlignment = bannerLeftImageAlignment;
+	}
+
+	public String getBannerCentreImageLocation() {
+		return bannerCentreImageLocation;
+	}
+
+	public void setBannerCentreImageLocation(String bannerCentreImageLocation) {
+		this.bannerCentreImageLocation = bannerCentreImageLocation;
+	}
+
+	public int getBannerCentreImageAlignment() {
+		return bannerCentreImageAlignment;
+	}
+
+	public void setBannerCentreImageAlignment(int bannerCentreImageAlignment) {
+		this.bannerCentreImageAlignment = bannerCentreImageAlignment;
+	}
+
+	public String getBannerRightImageLocation() {
+		return bannerRightImageLocation;
+	}
+
+	public void setBannerRightImageLocation(String bannerRightImageLocation) {
+		this.bannerRightImageLocation = bannerRightImageLocation;
+	}
+
+	public int getBannerRightImageAlignment() {
+		return bannerRightImageAlignment;
+	}
+
+	public void setBannerRightImageAlignment(int bannerRightImageAlignment) {
+		this.bannerRightImageAlignment = bannerRightImageAlignment;
+	}
+
+	public String getIconLocation() {
+		return iconLocation;
+	}
+
+	public void setIconLocation(String iconLocation) {
+		this.iconLocation = iconLocation;
+	}
+
+	public Color getBannerBackgroundColor() {
+		return bannerBackgroundColor;
+	}
+
+	public void setBannerBackgroundColor(Color bannerBackgroundColor) {
+		this.bannerBackgroundColor = bannerBackgroundColor;
+	}
+
+	public int getBannerHeight() {
+		return bannerHeight;
+	}
+
+	public void setBannerHeight(int bannerHeight) {
+		this.bannerHeight = bannerHeight;
+	}
+
+	public Color getInactiveTabForegroundColor() {
+		return inactiveTabForegroundColor;
+	}
+
+	public void setInactiveTabForegroundColor(Color inactiveTabForegroundColor) {
+		this.inactiveTabForegroundColor = inactiveTabForegroundColor;
+	}
+
+	public Color getInactiveTabBackgroundColor() {
+		return inactiveTabBackgroundColor;
+	}
+
+	public void setInactiveTabBackgroundColor(Color inactiveTabBackgroundColor) {
+		this.inactiveTabBackgroundColor = inactiveTabBackgroundColor;
+	}
+
+	public Color getMenuBackgroundColor() {
+		return menuBackgroundColor;
+	}
+
+	public void setMenuBackgroundColor(Color menuBackgroundColor) {
+		this.menuBackgroundColor = menuBackgroundColor;
+	}
+
+	public Color getMenuForegroundColor() {
+		return menuForegroundColor;
+	}
+
+	public void setMenuForegroundColor(Color menuForegroundColor) {
+		this.menuForegroundColor = menuForegroundColor;
+	}
+
+	public Color getRateIconBackgroundColor() {
+		return rateIconBackgroundColor;
+	}
+
+	public void setRateIconBackgroundColor(Color rateIconBackgroundColor) {
+		this.rateIconBackgroundColor = rateIconBackgroundColor;
+	}
+
+	public Color getRateIconForegroundColor() {
+		return rateIconForegroundColor;
+	}
+
+	public void setRateIconForegroundColor(Color rateIconForegroundColor) {
+		this.rateIconForegroundColor = rateIconForegroundColor;
+	}
+
+	public Color getThemeBackgroundColor() {
+		return themeBackgroundColor;
+	}
+
+	public void setThemeBackgroundColor(Color themeBackgroundColor) {
+		this.themeBackgroundColor = themeBackgroundColor;
+	}
+
+	public Color getThemeForegroundColor() {
+		return themeForegroundColor;
+	}
+
+	public void setThemeForegroundColor(Color themeForegroundColor) {
+		this.themeForegroundColor = themeForegroundColor;
+	}
+
+	public String getFrameIconLocation() {
+		return frameIconLocation;
+	}
+
+	public void setFrameIconLocation(String frameIconLocation) {
+		this.frameIconLocation = frameIconLocation;
+	}
+
+	public Color getStandBackgroundColor() {
+		return standBackgroundColor;
+	}
+
+	public void setStandBackgroundColor(Color standBackgroundColor) {
+		this.standBackgroundColor = standBackgroundColor;
+	}
+
+	public boolean isMenuSeparator() {
+		return menuSeparator;
+	}
+
+	public void setMenuSeparator(boolean menuSeparator) {
+		this.menuSeparator = menuSeparator;
+	}
+
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
+	}
+
+	public void setActiveTabForegroundColor(Color activeTabForegroundColor) {
+		this.activeTabForegroundColor = activeTabForegroundColor;
+	}
+
+	public void setActiveTabBackgroundColor(Color activeTabBackgroundColor) {
+		this.activeTabBackgroundColor = activeTabBackgroundColor;
+	}
+
+	public void setRateButtonColor(Color rateButtonColor) {
+		this.rateButtonColor = rateButtonColor;
+	}
+
+	public void setTableHeaderBackgroundColor(Color tableHeaderBackgroundColor) {
+		this.tableHeaderBackgroundColor = tableHeaderBackgroundColor;
+	}
+
+	public void setTableHeaderForegroundColor(Color tableHeaderForegroundColor) {
+		this.tableHeaderForegroundColor = tableHeaderForegroundColor;
+	}
+
+	public void setRateRolloverColor(Color rateRolloverColor) {
+		this.rateRolloverColor = rateRolloverColor;
+	}
+
+	public void setBidRateColor(Color bidRateColor) {
+		this.bidRateColor = bidRateColor;
+	}
+
+	public void setAskRateColor(Color askRateColor) {
+		this.askRateColor = askRateColor;
+	}
+
+	public void setRatesBackgroundColor(Color ratesBackgroundColor) {
+		this.ratesBackgroundColor = ratesBackgroundColor;
+	}
+
+	public void setAcceptedColor(Color acceptedColor) {
+		this.acceptedColor = acceptedColor;
+	}
+
+	public void setRejectedColor(Color rejectedColor) {
+		this.rejectedColor = rejectedColor;
+	}
+
+	public void setPendingColor(Color pendingColor) {
+		this.pendingColor = pendingColor;
+	}
+
+	public void setDisabledRateColor(Color disabledRateColor) {
+		this.disabledRateColor = disabledRateColor;
+	}
+
 	protected String	bannerImageLocation;
+	public String getBannerImageLocation() {
+		return bannerImageLocation;
+	}
+
+	public void setBannerImageLocation(String bannerImageLocation) {
+		this.bannerImageLocation = bannerImageLocation;
+	}
+
 	protected int		bannerImageAlignment;
 	protected String	bannerLeftImageLocation;
 	protected int		bannerLeftImageAlignment;

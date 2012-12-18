@@ -24,24 +24,29 @@
             name="title"
             value="${xs.prop.organisation}" >
         </property>
+        <property
+            name="lookAndFeel"
+            ref="lookandfeel" >
+        </property>
 	</bean>
+	
 	<bean
         id="lookandfeel"
-        class="ccom.flx.common.ui.swing.SwingUILookAndFeel" >
+        class="com.flx.common.ui.swing.laf.AlloyUILookAndFeel" >
         <property
             name="bannerImageLocation"
             value="${xs.ui.resourcePrefix}/com/financialogix/xstream/monitor/image/bannerImage" />
 
         <property
-            name="bannerLeftLocation"
+            name="bannerLeftImageLocation"
             value="{xs.ui.resourcePrefix}/com/financialogix/xstream/monitor/image/bannerLeft" />
 
         <property
-            name="bannerCentreLocation"
+            name="bannerCentreImageLocation"
             value="{xs.ui.resourcePrefix}/com/financialogix/xstream/monitor/image/bannerCentre" />
 
         <property
-            name="bannerRightLocation"
+            name="bannerRightImageLocation"
             value="{xs.ui.resourcePrefix}/com/financialogix/xstream/monitor/image/bannerRight" />
     </bean>
 

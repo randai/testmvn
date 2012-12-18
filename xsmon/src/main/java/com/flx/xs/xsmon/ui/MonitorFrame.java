@@ -8,6 +8,7 @@ package com.flx.xs.xsmon.ui;
 
 import org.apache.commons.logging.Log;
 
+import com.flx.common.ui.swing.SwingUILookAndFeel;
 import com.flx.xs.common.logger.Logger;
 
 /**
@@ -18,6 +19,16 @@ public class MonitorFrame extends javax.swing.JFrame {
 	@Logger private static Log log;
 	
 	private String title;
+	
+	private SwingUILookAndFeel lookAndFeel;
+
+	public SwingUILookAndFeel getLookAndFeel() {
+		return lookAndFeel;
+	}
+
+	public void setLookAndFeel(SwingUILookAndFeel lookAndFeel) {
+		this.lookAndFeel = lookAndFeel;
+	}
 
 	public void setTitle(String title) {
 		this.title = title;
